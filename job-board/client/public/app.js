@@ -8,8 +8,11 @@ async function fetchGreeting(){
             query: 'query {greeting}'
         }),
     });
-    const body = await response.json();
-    console.log('body', body);
+    const {data}  = await response.json();
+    //console.log('body', body);
+    return data.greeting;
 }
 
-fetchGreeting();
+fetchGreeting().then((greeting) => {
+    document.getElementById('greeting').textContent = greeting;
+});
